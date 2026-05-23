@@ -25,6 +25,12 @@
       "skillPath": "skills/data/SKILL.md",
       "computedHash": "dfa3600447dd4cbc4c919d11576159fbd4effc714ddbcec8bd4c88ae3da379aa"
     },
+    "emil-design-eng": {
+      "source": "emilkowalski/skill",
+      "sourceType": "github",
+      "skillPath": "skills/emil-design-eng/SKILL.md",
+      "computedHash": "8bdf9e4e6de7a4969147bf4828a4ad2c5aacd9fba4b690b250a85e0467ca387d"
+    },
     "soroban": {
       "source": "stellar/stellar-dev-skill",
       "sourceType": "github",

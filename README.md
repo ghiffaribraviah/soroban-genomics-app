@@ -24,4 +24,5 @@ A static frontend is available in `frontend/`. Open `frontend/index.html` in a b
 
 The current frontend ships with a local-storage demo provider that mirrors the Soroban contract API. Wire the `provider` object in `frontend/app.js` to a generated Soroban JavaScript client after deploying the contract and configuring the contract ID, RPC URL, and network passphrase.
 
-## ID Smartcontract Smartnet
+## ID Smartcontract Testnet
+CBFDKMQGKE2S7DIY4P3NBTDTJPIJKGPIOEO36RSJNM2U4RVJ64CLR3DM
