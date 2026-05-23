@@ -1,12 +1,20 @@
-# Soroban Genomics Repository
+# Project Title
 
-## App Description
+Soroban Genomics Repository
+
+## Project Description
 
 Soroban Genomics Repository is a Web3 marketplace and repository for genomic dataset metadata on Stellar Soroban.
 
 The app lets dataset owners publish discoverable genomic dataset listings, manage access rights, and record marketplace-style access purchases on-chain. Raw genomic files are intended to stay off-chain in encrypted or controlled storage, while the smart contract stores dataset metadata, content hashes, storage URIs, pricing, ownership, and access receipts.
 
-## Features
+## Project Vision
+
+The project aims to make genomic dataset discovery and access more transparent, auditable, and programmable. Researchers should be able to find datasets and verify access rights, while dataset owners retain control over metadata, availability, and access permissions through Soroban smart contracts.
+
+## Feature Lists
+
+### Smart Contract Features
 
 - `publish_dataset()` - Publish a genomic dataset listing with owner authorization
 - `get_dataset()` - Retrieve one dataset record by dataset ID
@@ -18,11 +26,15 @@ The app lets dataset owners publish discoverable genomic dataset listings, manag
 - `has_access()` - Check whether a wallet address has access to a dataset
 - `get_access_grant()` - Retrieve the access grant record for a dataset and wallet address
 
-## Frontend
+### Frontend Features
 
-A static frontend is available in `frontend/`. Open `frontend/index.html` in a browser to use the dataset catalog, owner console, and access management desk.
+- Static frontend available in `frontend/`
+- Dataset catalog for browsing genomic metadata listings
+- Owner console for publishing and updating dataset metadata
+- Access desk for checking, granting, purchasing, and revoking access
+- Local-storage demo provider that mirrors the Soroban contract API until the deployed contract is wired into the frontend
 
-The current frontend ships with a local-storage demo provider that mirrors the Soroban contract API. Wire the `provider` object in `frontend/app.js` to a generated Soroban JavaScript client after deploying the contract and configuring the contract ID, RPC URL, and network passphrase.
+## ID
 
-## ID Smartcontract Testnet
+Smart Contract Testnet ID:
 CBFDKMQGKE2S7DIY4P3NBTDTJPIJKGPIOEO36RSJNM2U4RVJ64CLR3DM
