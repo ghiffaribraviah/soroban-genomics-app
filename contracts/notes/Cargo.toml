@@ -1,5 +1,5 @@
 [package]
-name = "notes"
+name = "genomics-repository"
 version = "0.0.0"
 edition = "2021"
 publish = false
