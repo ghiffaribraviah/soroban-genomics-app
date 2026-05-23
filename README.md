@@ -18,5 +18,10 @@ The app lets dataset owners publish discoverable genomic dataset listings, manag
 - `has_access()` - Check whether a wallet address has access to a dataset
 - `get_access_grant()` - Retrieve the access grant record for a dataset and wallet address
 
-## ID Smartcontract Smartnet
+## Frontend
 
+A static frontend is available in `frontend/`. Open `frontend/index.html` in a browser to use the dataset catalog, owner console, and access management desk.
+
+The current frontend ships with a local-storage demo provider that mirrors the Soroban contract API. Wire the `provider` object in `frontend/app.js` to a generated Soroban JavaScript client after deploying the contract and configuring the contract ID, RPC URL, and network passphrase.
+
+## ID Smartcontract Smartnet

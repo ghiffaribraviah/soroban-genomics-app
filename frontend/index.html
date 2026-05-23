@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Soroban Genomics Repository</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">SG</div>
+          <div>
+            <p class="eyebrow">Soroban</p>
+            <h1>Genomics Repository</h1>
+          </div>
+        </div>
+
+        <nav class="nav-tabs" aria-label="Views">
+          <button class="nav-tab active" data-view="catalog" type="button">
+            <span aria-hidden="true">⌘</span>
+            Catalog
+          </button>
+          <button class="nav-tab" data-view="owner" type="button">
+            <span aria-hidden="true">◧</span>
+            Owner Console
+          </button>
+          <button class="nav-tab" data-view="access" type="button">
+            <span aria-hidden="true">◇</span>
+            Access Desk
+          </button>
+        </nav>
+
+        <div class="network-panel">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Demo provider</strong>
+            <p>Local state mirrors the contract API until a deployed contract ID is configured.</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Web3 metadata marketplace</p>
+            <h2 id="view-title">Dataset catalog</h2>
+          </div>
+          <div class="wallet">
+            <span id="wallet-address">No wallet connected</span>
+            <button id="connect-wallet" class="button primary" type="button">Connect</button>
+          </div>
+        </header>
+
+        <section class="metrics" aria-label="Repository metrics">
+          <div class="metric">
+            <span id="metric-total">0</span>
+            <p>Datasets</p>
+          </div>
+          <div class="metric">
+            <span id="metric-active">0</span>
+            <p>Active listings</p>
+          </div>
+          <div class="metric">
+            <span id="metric-access">0</span>
+            <p>Access grants</p>
+          </div>
+          <div class="metric">
+            <span id="metric-volume">0</span>
+            <p>Recorded volume</p>
+          </div>
+        </section>
+
+        <section id="catalog-view" class="view active" aria-labelledby="catalog-heading">
+          <div class="section-head">
+            <div>
+              <h3 id="catalog-heading">Discover datasets</h3>
+              <p>Search listings by title, owner, data type, URI, or content hash.</p>
+            </div>
+            <div class="toolbar">
+              <label class="search">
+                <span aria-hidden="true">⌕</span>
+                <input id="dataset-search" type="search" placeholder="Search catalog" />
+              </label>
+              <select id="data-filter" aria-label="Filter by data type">
+                <option value="all">All data types</option>
+              </select>
+            </div>
+          </div>
+          <div id="dataset-grid" class="dataset-grid"></div>
+        </section>
+
+        <section id="owner-view" class="view" aria-labelledby="owner-heading">
+          <div class="section-head">
+            <div>
+              <h3 id="owner-heading">Publish or update metadata</h3>
+              <p>Owner-authorized writes map to `publish_dataset` and `update_dataset`.</p>
+            </div>
+            <button id="reset-demo" class="button ghost" type="button">Reset demo data</button>
+          </div>
+
+          <form id="dataset-form" class="form-grid">
+            <input id="dataset-id" type="hidden" />
+            <label>
+              Dataset title
+              <input id="title" name="title" required minlength="4" placeholder="Rare disease cohort A" />
+            </label>
+            <label>
+              Data type
+              <input id="data-type" name="dataType" required placeholder="WGS, RNA-seq, methylation" />
+            </label>
+            <label class="span-2">
+              Description
+              <textarea id="description" name="description" required rows="4" placeholder="De-identified cohort metadata and access constraints"></textarea>
+            </label>
+            <label>
+              Metadata URI
+              <input id="metadata-uri" name="metadataUri" required placeholder="ipfs://..." />
+            </label>
+            <label>
+              Content hash
+              <input id="content-hash" name="contentHash" required placeholder="sha256:..." />
+            </label>
+            <label>
+              Price
+              <input id="price" name="price" type="number" min="0" step="1" required placeholder="250" />
+            </label>
+            <label class="checkbox-row">
+              <input id="active" name="active" type="checkbox" checked />
+              Active listing
+            </label>
+            <div class="form-actions span-2">
+              <button class="button primary" type="submit">Publish dataset</button>
+              <button id="clear-form" class="button ghost" type="button">Clear</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="access-view" class="view" aria-labelledby="access-heading">
+          <div class="section-head">
+            <div>
+              <h3 id="access-heading">Access management</h3>
+              <p>Check, grant, revoke, or record marketplace purchases for dataset access.</p>
+            </div>
+          </div>
+
+          <div class="access-layout">
+            <form id="access-form" class="access-panel">
+              <label>
+                Dataset
+                <select id="access-dataset" required></select>
+              </label>
+              <label>
+                Researcher wallet
+                <input id="researcher" required placeholder="G..." />
+              </label>
+              <label>
+                Paid amount
+                <input id="paid-amount" type="number" min="0" step="1" value="0" />
+              </label>
+              <div class="segmented" role="group" aria-label="Access operation">
+                <button class="active" data-action="check" type="button">Check</button>
+                <button data-action="grant" type="button">Grant</button>
+                <button data-action="purchase" type="button">Purchase</button>
+                <button data-action="revoke" type="button">Revoke</button>
+              </div>
+              <button id="run-access-action" class="button primary" type="submit">Run access action</button>
+            </form>
+
+            <div class="activity-panel">
+              <div class="section-head compact">
+                <div>
+                  <h3>Recent activity</h3>
+                  <p>Local event log modeled after contract events.</p>
+                </div>
+              </div>
+              <ol id="activity-list" class="activity-list"></ol>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="dataset-card-template">
+      <article class="dataset-card">
+        <div class="card-topline">
+          <span class="pill data-type"></span>
+          <span class="pill status"></span>
+        </div>
+        <h3></h3>
+        <p class="description"></p>
+        <dl class="meta-list">
+          <div>
+            <dt>Owner</dt>
+            <dd class="owner"></dd>
+          </div>
+          <div>
+            <dt>Price</dt>
+            <dd class="price"></dd>
+          </div>
+          <div>
+            <dt>Metadata</dt>
+            <dd class="metadata-uri"></dd>
+          </div>
+          <div>
+            <dt>Hash</dt>
+            <dd class="content-hash"></dd>
+          </div>
+        </dl>
+        <div class="card-actions">
+          <button class="button ghost edit-action" type="button">Edit</button>
+          <button class="button primary access-action" type="button">Manage access</button>
+        </div>
+      </article>
+    </template>
+
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
